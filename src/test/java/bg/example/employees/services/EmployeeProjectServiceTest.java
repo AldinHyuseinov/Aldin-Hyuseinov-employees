@@ -10,10 +10,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -47,6 +49,14 @@ public class EmployeeProjectServiceTest {
 
         verify(mockEmployeeProjectRepository).deleteAll();
         verify(mockEmployeeProjectRepository, times(4)).save(any());
+    }
+
+    @Test
+    void saveDataShouldThrowExceptionWhenUnsupportedDateFormat() {
+        MockMultipartFile csvFile = new MockMultipartFile("file", "test.csv",
+                "text/csv", "143,12,Jan 11 2013,2023/05/19".getBytes());
+
+        assertThrows(DateTimeException.class, () -> employeeProjectService.saveData(csvFile));
     }
 
     @Test

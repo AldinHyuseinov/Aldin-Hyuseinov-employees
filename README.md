@@ -13,7 +13,7 @@ Validations and error handling.
 Create-drop database for temporarily storing file data and querying. 
 Uploading a new file will overwrite the previous file data.
 
-Unit test.
+Unit and integration test (92% line coverage).
 
 # Works with:
 Java

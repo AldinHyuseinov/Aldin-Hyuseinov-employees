@@ -65,8 +65,9 @@ public class EmployeeProjectService {
 
                 line = reader.readLine();
             }
+            reader.close();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
     }
 
