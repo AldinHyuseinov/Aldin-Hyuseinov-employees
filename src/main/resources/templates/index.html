@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head}"></head>
+
+<body>
+
+<div th:replace="~{fragments/navbar}"></div>
+
+<div class="container my-5">
+    <form enctype="multipart/form-data" th:method="POST" th:action="@{/upload}">
+        <div th:if="${noFileSelected}" th:text="${noFileSelected}" class="alert alert-danger"></div>
+        <div th:if="${incorrectFileFormat}" th:text="${incorrectFileFormat}" class="alert alert-danger"></div>
+        <div th:if="${unsupportedDateFormat}" th:text="${unsupportedDateFormat}" class="alert alert-danger"></div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Select CSV file</label>
+            <input class="form-control" type="file" name="file" accept=".csv" id="formFile">
+        </div>
+        <button type="submit" class="btn btn-primary" id="select-button">Select</button>
+    </form>
+</div>
+</body>
+
+</html>
